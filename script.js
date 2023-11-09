@@ -71,6 +71,21 @@ function clearInput() {
   message.value = "";
 }
 
+function loadNotes() {
+  let storedNotes = JSON.parse(localStorage.getItem("notes"));
+  if (storedNotes) {
+    noteArray = storedNotes;
+    if (storedNotes.length > 0) {
+      Note.nextId = storedNotes[storedNotes.length - 1].id + 1;
+    }
+    storedNotes.forEach((note) => {
+      createNote(note.title, note.message, note.date);
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadNotes);
+
 newNoteButton.addEventListener("click", () => {
   toggleVisible();
 });
@@ -92,6 +107,7 @@ saveButton.addEventListener("click", (e) => {
   let newNote = new Note(title, message);
   noteArray.push(newNote);
   createNote(newNote.title, newNote.message, newNote.date);
+  localStorage.setItem("notes", JSON.stringify(noteArray));
   clearInput();
   toggleVisible();
 });
