@@ -22,7 +22,7 @@
   </div>
 
   <div class="notes">
-    <h4>My notes:</h4>
+    <h4 class="notes_h4">My notes:</h4>
   </div>
 
   <div class="notes_container">
@@ -42,7 +42,19 @@
         <img src="./images/logo.png" alt="logo image" class="logo_image">
       </div>
     </div>
+    <form class="modal">
+      <label for="title" class="modal_title">Title</label>
+      <input type="text" id="title" autofocus>
+      <label for="message" class="modal_message">Write here:</label>
+      <textarea id="message" name="body" cols="5" rows="5"></textarea>
+      <div class="modal_buttons">
+        <button type="submit" id="saveButton" class="modal_button">Save</button>
+        <button type="reset" id="cancelButton" class="modal_button">Cancel</button>
+      </div>
+    </form>
+
   </div>
+
 
   <div class="opened_notes">
     <div class="opened_notes_note">
@@ -55,18 +67,6 @@
       <p class="opened_notes_note_button_paragraph">Close</p>
     </div>
   </div>
-
-
-  <form class="modal">
-    <label for="title" class="modal_title">Title</label>
-    <input type="text" id="title" autofocus>
-    <label for="message" class="modal_message">Write here:</label>
-    <textarea id="message" name="body" cols="5" rows="5"></textarea>
-    <div class="modal_buttons">
-      <button type="submit" id="saveButton" class="modal_button">Save</button>
-      <button type="reset" id="cancelButton" class="modal_button">Cancel</button>
-    </div>
-  </form>
 
 
   <div class="controls">

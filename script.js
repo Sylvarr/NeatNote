@@ -75,6 +75,10 @@ newNoteButton.addEventListener("click", () => {
   toggleVisible();
 });
 
+modal.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
 invisiblePanel.addEventListener("click", () => {
   toggleVisible();
 });
