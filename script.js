@@ -36,7 +36,7 @@ function notesVisible() {
   openedNotes.classList.toggle("visible");
 }
 
-function createNote(title, message, date) {
+function createNote(title, message, date, id) {
   let noteContainer = document.createElement("div");
   noteContainer.classList.add("notes_container_note");
   notesContainer.appendChild(noteContainer);
@@ -55,17 +55,18 @@ function createNote(title, message, date) {
   noteBundle.appendChild(noteTitle);
   noteTitle.textContent = title;
 
-  let closeButton = document.createElement("span");
+  let closeButton = document.createElement("button");
+  closeButton.value = id;
   closeButton.classList.add("notes_container_close");
   noteBundle.appendChild(closeButton);
   closeButton.textContent = "X";
   closeButton.addEventListener("click", (e) => {
     e.stopPropagation();
+    let newNotes = noteArray.filter((note) => note.id != e.target.value);
+    noteArray = newNotes;
+    localStorage.setItem("notes", JSON.stringify(noteArray));
     noteContainer.remove();
   });
-
-  let deleteNoteButton = document.createElement("span");
-  deleteNoteButton.className = "notes_container_close";
 
   let noteMessage = document.createElement("p");
   noteMessage.classList.add("notes_container_note_body");
@@ -128,7 +129,7 @@ saveButton.addEventListener("click", (e) => {
   e.preventDefault();
   let newNote = new Note(title, message);
   noteArray.push(newNote);
-  createNote(newNote.title, newNote.message, newNote.date);
+  createNote(newNote.title, newNote.message, newNote.date, newNote.id);
   localStorage.setItem("notes", JSON.stringify(noteArray));
   clearInput();
   toggleVisible();
