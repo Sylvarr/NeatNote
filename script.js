@@ -106,7 +106,7 @@ function loadNotes() {
       Note.nextId = storedNotes[storedNotes.length - 1].id + 1;
     }
     storedNotes.forEach((note) => {
-      createNote(note.title, note.message, note.date);
+      createNote(note.title, note.message, note.date, note.id);
     });
   }
 }
